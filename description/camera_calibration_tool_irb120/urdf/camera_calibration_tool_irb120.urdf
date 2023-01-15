@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-1-g15f4949  Build Version: 1.6.7594.29634
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="camera_calibration_tool_irb120">
+  <link
+    name="calib_irb120_mount">
+    <inertial>
+      <origin
+        xyz="-8.12565780551138E-05 -0.00287805849749058 -3.52248683292909E-19"
+        rpy="0 0 0" />
+      <mass
+        value="0.0209349166233355" />
+      <inertia
+        ixx="4.95778958493382E-06"
+        ixy="1.97846625513937E-10"
+        ixz="-4.43831754358549E-23"
+        iyy="9.71241755254459E-06"
+        iyz="-2.75701045324081E-22"
+        izz="5.03139901662538E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://camera_calibration_tool_irb120/meshes/calib_irb120_mount.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://camera_calibration_tool_irb120/meshes/calib_irb120_mount.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="calib_chessboard_mount">
+    <inertial>
+      <origin
+        xyz="-3.45867604983378E-17 -0.00894935918184562 0.0168899392357391"
+        rpy="0 0 0" />
+      <mass
+        value="0.051158149759327" />
+      <inertia
+        ixx="1.66225607083464E-05"
+        ixy="-3.06301449855151E-22"
+        ixz="8.3201613309091E-22"
+        iyy="1.74442705550819E-05"
+        iyz="3.7130506703622E-06"
+        izz="2.00339404612724E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://camera_calibration_tool_irb120/meshes/calib_chessboard_mount.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://camera_calibration_tool_irb120/meshes/calib_chessboard_mount.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="calib_mount_joint"
+    type="fixed">
+    <origin
+      xyz="0 -0.006 0"
+      rpy="1.5708 0 0" />
+    <parent
+      link="calib_irb120_mount" />
+    <child
+      link="calib_chessboard_mount" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="calib_chessboard">
+    <inertial>
+      <origin
+        xyz="9.22626218376613E-18 -0.00587706046456411 0.00249956082033895"
+        rpy="0 0 0" />
+      <mass
+        value="0.153331049840439" />
+      <inertia
+        ixx="0.000390178689718211"
+        ixy="4.45302065945594E-20"
+        ixz="-1.10250787557035E-21"
+        iyy="0.000391719917576771"
+        iyz="-6.27088743359988E-09"
+        izz="0.00078125964975703" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://camera_calibration_tool_irb120/meshes/calib_chessboard.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://camera_calibration_tool_irb120/meshes/calib_chessboard.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="calib_chessboard_joint"
+    type="fixed">
+    <origin
+      xyz="0 0 0.124"
+      rpy="1.5708 0 0" />
+    <parent
+      link="calib_chessboard_mount" />
+    <child
+      link="calib_chessboard" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+</robot>

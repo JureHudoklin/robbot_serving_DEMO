@@ -1,0 +1,11 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: full_scene_description
+    relative_path: urdf/full_scene_description.urdf
+    xacro_args: ""
+  SRDF:
+    relative_path: config/full_scene.srdf
+  CONFIG:
+    author_name: HaeJoon Seong
+    author_email: shj96227@g.skku.edu
+    generated_timestamp: 1641368334

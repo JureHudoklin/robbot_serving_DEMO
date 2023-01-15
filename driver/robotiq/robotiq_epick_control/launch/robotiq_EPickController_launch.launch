@@ -1,0 +1,3 @@
+<launch>
+  <node name="robotiq_epick_node" pkg="robotiq_epick_control" type="robotiq_epick_node.py" output="screen" />
+</launch>

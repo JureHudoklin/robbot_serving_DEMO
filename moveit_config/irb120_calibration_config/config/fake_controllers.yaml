@@ -1,0 +1,13 @@
+controller_list:
+  - name: fake_irb120_cal_controller
+    type: $(arg execution_type)
+    joints:
+      - irb120_joint_1
+      - irb120_joint_2
+      - irb120_joint_3
+      - irb120_joint_4
+      - irb120_joint_5
+      - irb120_joint_6
+initial:  # Define initial robot poses.
+  - group: irb120_cal
+    pose: zero_pose

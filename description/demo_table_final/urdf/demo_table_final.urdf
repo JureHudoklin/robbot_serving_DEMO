@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-1-g15f4949  Build Version: 1.6.7594.29634
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="demo_table_final">
+  <link
+    name="robot_table_link">
+    <inertial>
+      <origin
+        xyz="-0.105 -0.05 -0.375"
+        rpy="0 0 0" />
+      <mass
+        value="270" />
+      <inertia
+        ixx="20.75625"
+        ixy="9.3207792197652E-16"
+        ixz="-6.95496724866511E-16"
+        iyy="20.75625"
+        iyz="-4.46389240706941E-16"
+        izz="16.2" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://demo_table_final/meshes/robot_table_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://demo_table_final/meshes/robot_table_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="table_link">
+    <inertial>
+      <origin
+        xyz="0.00402126708859457 0.035508393002459 -0.124898664646273"
+        rpy="0 0 0" />
+      <mass
+        value="168.944" />
+      <inertia
+        ixx="8.44699759847205"
+        ixy="-1.30104260698261E-15"
+        ixz="-2.60208521396521E-15"
+        iyy="71.945357598472"
+        iyz="3.18207682075481E-15"
+        izz="71.4394277333333" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://demo_table_final/meshes/table_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://demo_table_final/meshes/table_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="tabke_joint"
+    type="fixed">
+    <origin
+      xyz="0.409491606997541 -0.235978732911405 0.139999999999999"
+      rpy="0 0 -1.5707963267949" />
+    <parent
+      link="robot_table_link" />
+    <child
+      link="table_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="cup_table_link">
+    <inertial>
+      <origin
+        xyz="-0.00488252735290881 0.0750000000000001 -0.0014947488016297"
+        rpy="0 0 0" />
+      <mass
+        value="0.485007210626774" />
+      <inertia
+        ixx="0.0144827661603697"
+        ixy="6.37638257355761E-19"
+        ixz="1.5226158759248E-05"
+        iyy="0.000767879681095258"
+        iyz="2.78003444654154E-20"
+        izz="0.0152414793054048" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://demo_table_final/meshes/cup_table_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://demo_table_final/meshes/cup_table_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="cup_table_joint"
+    type="fixed">
+    <origin
+      xyz="-0.525978732911406 0.215557219161956 0.005"
+      rpy="0 0 1.5707963267949" />
+    <parent
+      link="table_link" />
+    <child
+      link="cup_table_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="plate_table_link">
+    <inertial>
+      <origin
+        xyz="0.0821309141789029 -0.14 -0.0780889544369172"
+        rpy="0 0 0" />
+      <mass
+        value="27.7659" />
+      <inertia
+        ixx="0.812008207991436"
+        ixy="-2.15177346128204E-17"
+        ixz="0.000861743605069532"
+        iyy="0.273754933724942"
+        iyz="1.39808683446883E-17"
+        izz="0.967215330733505" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://demo_table_final/meshes/plate_table_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://demo_table_final/meshes/plate_table_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="plate_table_joint"
+    type="fixed">
+    <origin
+      xyz="-0.140978732911405 0.050508393002459 0.158"
+      rpy="0 0 1.5707963267949" />
+    <parent
+      link="table_link" />
+    <child
+      link="plate_table_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+</robot>

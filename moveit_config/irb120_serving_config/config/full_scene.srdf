@@ -1,0 +1,228 @@
+<?xml version="1.0" ?>
+<!--This does not replace URDF, and is not an extension of URDF.
+    This is a format for representing semantic information about the robot structure.
+    A URDF file must exist for this robot as well, where the joints and the links that are referenced are defined
+-->
+<robot name="full_scene">
+    <!--GROUPS: Representation of a set of joints and links. This can be useful for specifying DOF to plan for, defining arms, end effectors, etc-->
+    <!--LINKS: When a link is specified, the parent joint of that link (if it exists) is automatically included-->
+    <!--JOINTS: When a joint is specified, the child link of that joint (which will always exist) is automatically included-->
+    <!--CHAINS: When a chain is specified, all the links along the chain (including endpoints) are included in the group. Additionally, all the joints that are parents to included links are also included. This means that joints along the chain and the parent joint of the base link are included in the group-->
+    <!--SUBGROUPS: Groups can also be formed by referencing to already defined group names-->
+    <group name="irb120_cup">
+        <joint name="irb120_joint_1" />
+        <joint name="irb120_joint_2" />
+        <joint name="irb120_joint_3" />
+        <joint name="irb120_joint_4" />
+        <joint name="irb120_joint_5" />
+        <joint name="irb120_joint_6" />
+        <joint name="irb120_joint_6-flange" />
+        <joint name="irb120_link_6-tool0" />
+        <joint name="cup_grasp_point" />
+    </group>
+    <group name="irb120_plate">
+        <joint name="irb120_joint_1" />
+        <joint name="irb120_joint_2" />
+        <joint name="irb120_joint_3" />
+        <joint name="irb120_joint_4" />
+        <joint name="irb120_joint_5" />
+        <joint name="irb120_joint_6" />
+        <joint name="irb120_joint_6-flange" />
+        <joint name="irb120_link_6-tool0" />
+        <joint name="plate_grasp_point" />
+    </group>
+    <!--GROUP STATES: Purpose: Define a named state for a particular group, in terms of joint values. This is useful to define states like 'folded arms'-->
+    <group_state name="zero_pose" group="irb120_cup">
+        <joint name="irb120_joint_1" value="-1.5707" />
+        <joint name="irb120_joint_2" value="0" />
+        <joint name="irb120_joint_3" value="0" />
+        <joint name="irb120_joint_4" value="0" />
+        <joint name="irb120_joint_5" value="0" />
+        <joint name="irb120_joint_6" value="0" />
+    </group_state>
+    <group_state name="zero_pose" group="irb120_plate">
+        <joint name="irb120_joint_1" value="-1.5707" />
+        <joint name="irb120_joint_2" value="0" />
+        <joint name="irb120_joint_3" value="0" />
+        <joint name="irb120_joint_4" value="0" />
+        <joint name="irb120_joint_5" value="0" />
+        <joint name="irb120_joint_6" value="0" />
+    </group_state>
+    <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
+    <disable_collisions link1="cup_grasp_point" link2="irb120_link_3" reason="Never" />
+    <disable_collisions link1="cup_grasp_point" link2="irb120_link_4" reason="Never" />
+    <disable_collisions link1="cup_grasp_point" link2="irb120_link_5" reason="Never" />
+    <disable_collisions link1="cup_grasp_point" link2="irb120_link_6" reason="Adjacent" />
+    <disable_collisions link1="cup_grasp_point" link2="left_inner_finger" reason="Never" />
+    <disable_collisions link1="cup_grasp_point" link2="left_inner_finger_pad" reason="Never" />
+    <disable_collisions link1="cup_grasp_point" link2="left_inner_knuckle" reason="Never" />
+    <disable_collisions link1="cup_grasp_point" link2="left_outer_finger" reason="Never" />
+    <disable_collisions link1="cup_grasp_point" link2="left_outer_knuckle" reason="Never" />
+    <disable_collisions link1="cup_grasp_point" link2="plate_grasp_point" reason="Adjacent" />
+    <disable_collisions link1="cup_grasp_point" link2="right_inner_finger" reason="Never" />
+    <disable_collisions link1="cup_grasp_point" link2="right_inner_finger_pad" reason="Never" />
+    <disable_collisions link1="cup_grasp_point" link2="right_inner_knuckle" reason="Never" />
+    <disable_collisions link1="cup_grasp_point" link2="right_outer_finger" reason="Never" />
+    <disable_collisions link1="cup_grasp_point" link2="right_outer_knuckle" reason="Never" />
+    <disable_collisions link1="cup_grasp_point" link2="robotiq_arg2f_base_link" reason="Never" />
+    <disable_collisions link1="cup_grasp_point" link2="robotiq_gripper_coupling" reason="Adjacent" />
+    <disable_collisions link1="cup_table_link" link2="irb120_base_link" reason="Never" />
+    <disable_collisions link1="cup_table_link" link2="irb120_link_1" reason="Never" />
+    <disable_collisions link1="cup_table_link" link2="irb120_link_2" reason="Never" />
+    <disable_collisions link1="cup_table_link" link2="irb120_link_3" reason="Never" />
+    <disable_collisions link1="cup_table_link" link2="plate_table_link" reason="Never" />
+    <disable_collisions link1="cup_table_link" link2="robot_table_link" reason="Never" />
+    <disable_collisions link1="cup_table_link" link2="table_link" reason="Adjacent" />
+    <disable_collisions link1="irb120_base_link" link2="irb120_link_1" reason="Adjacent" />
+    <disable_collisions link1="irb120_base_link" link2="irb120_link_2" reason="Never" />
+    <disable_collisions link1="irb120_base_link" link2="plate_table_link" reason="Never" />
+    <disable_collisions link1="irb120_base_link" link2="robot_table_link" reason="Adjacent" />
+    <disable_collisions link1="irb120_base_link" link2="table_link" reason="Never" />
+    <disable_collisions link1="irb120_link_1" link2="irb120_link_2" reason="Adjacent" />
+    <disable_collisions link1="irb120_link_1" link2="plate_table_link" reason="Never" />
+    <disable_collisions link1="irb120_link_1" link2="robot_table_link" reason="Never" />
+    <disable_collisions link1="irb120_link_1" link2="table_link" reason="Never" />
+    <disable_collisions link1="irb120_link_2" link2="irb120_link_3" reason="Adjacent" />
+    <disable_collisions link1="irb120_link_2" link2="irb120_link_5" reason="Never" />
+    <disable_collisions link1="irb120_link_2" link2="irb120_link_6" reason="Never" />
+    <disable_collisions link1="irb120_link_2" link2="plate_table_link" reason="Never" />
+    <disable_collisions link1="irb120_link_2" link2="robot_table_link" reason="Never" />
+    <disable_collisions link1="irb120_link_2" link2="robotiq_gripper_coupling" reason="Never" />
+    <disable_collisions link1="irb120_link_2" link2="table_link" reason="Never" />
+    <disable_collisions link1="irb120_link_3" link2="irb120_link_4" reason="Adjacent" />
+    <disable_collisions link1="irb120_link_3" link2="irb120_link_5" reason="Never" />
+    <disable_collisions link1="irb120_link_3" link2="irb120_link_6" reason="Never" />
+    <disable_collisions link1="irb120_link_3" link2="left_inner_finger" reason="Never" />
+    <disable_collisions link1="irb120_link_3" link2="left_inner_finger_pad" reason="Never" />
+    <disable_collisions link1="irb120_link_3" link2="left_inner_knuckle" reason="Never" />
+    <disable_collisions link1="irb120_link_3" link2="left_outer_finger" reason="Never" />
+    <disable_collisions link1="irb120_link_3" link2="left_outer_knuckle" reason="Never" />
+    <disable_collisions link1="irb120_link_3" link2="plate_grasp_point" reason="Never" />
+    <disable_collisions link1="irb120_link_3" link2="right_inner_finger" reason="Never" />
+    <disable_collisions link1="irb120_link_3" link2="right_inner_finger_pad" reason="Never" />
+    <disable_collisions link1="irb120_link_3" link2="right_inner_knuckle" reason="Never" />
+    <disable_collisions link1="irb120_link_3" link2="right_outer_finger" reason="Never" />
+    <disable_collisions link1="irb120_link_3" link2="right_outer_knuckle" reason="Never" />
+    <disable_collisions link1="irb120_link_3" link2="robot_table_link" reason="Never" />
+    <disable_collisions link1="irb120_link_3" link2="robotiq_arg2f_base_link" reason="Never" />
+    <disable_collisions link1="irb120_link_3" link2="robotiq_gripper_coupling" reason="Never" />
+    <disable_collisions link1="irb120_link_4" link2="irb120_link_5" reason="Adjacent" />
+    <disable_collisions link1="irb120_link_4" link2="left_inner_finger" reason="Never" />
+    <disable_collisions link1="irb120_link_4" link2="left_inner_finger_pad" reason="Never" />
+    <disable_collisions link1="irb120_link_4" link2="left_inner_knuckle" reason="Never" />
+    <disable_collisions link1="irb120_link_4" link2="left_outer_finger" reason="Never" />
+    <disable_collisions link1="irb120_link_4" link2="left_outer_knuckle" reason="Never" />
+    <disable_collisions link1="irb120_link_4" link2="plate_grasp_point" reason="Never" />
+    <disable_collisions link1="irb120_link_4" link2="right_inner_finger" reason="Never" />
+    <disable_collisions link1="irb120_link_4" link2="right_inner_finger_pad" reason="Never" />
+    <disable_collisions link1="irb120_link_4" link2="right_inner_knuckle" reason="Never" />
+    <disable_collisions link1="irb120_link_4" link2="right_outer_finger" reason="Never" />
+    <disable_collisions link1="irb120_link_4" link2="right_outer_knuckle" reason="Never" />
+    <disable_collisions link1="irb120_link_5" link2="irb120_link_6" reason="Adjacent" />
+    <disable_collisions link1="irb120_link_5" link2="left_inner_finger" reason="Never" />
+    <disable_collisions link1="irb120_link_5" link2="left_inner_finger_pad" reason="Never" />
+    <disable_collisions link1="irb120_link_5" link2="left_inner_knuckle" reason="Never" />
+    <disable_collisions link1="irb120_link_5" link2="left_outer_finger" reason="Never" />
+    <disable_collisions link1="irb120_link_5" link2="left_outer_knuckle" reason="Never" />
+    <disable_collisions link1="irb120_link_5" link2="plate_grasp_point" reason="Never" />
+    <disable_collisions link1="irb120_link_5" link2="right_inner_finger" reason="Never" />
+    <disable_collisions link1="irb120_link_5" link2="right_inner_finger_pad" reason="Never" />
+    <disable_collisions link1="irb120_link_5" link2="right_inner_knuckle" reason="Never" />
+    <disable_collisions link1="irb120_link_5" link2="right_outer_finger" reason="Never" />
+    <disable_collisions link1="irb120_link_5" link2="right_outer_knuckle" reason="Never" />
+    <disable_collisions link1="irb120_link_5" link2="robotiq_arg2f_base_link" reason="Never" />
+    <disable_collisions link1="irb120_link_5" link2="robotiq_gripper_coupling" reason="Default" />
+    <disable_collisions link1="irb120_link_6" link2="left_inner_finger" reason="Never" />
+    <disable_collisions link1="irb120_link_6" link2="left_inner_finger_pad" reason="Never" />
+    <disable_collisions link1="irb120_link_6" link2="left_inner_knuckle" reason="Never" />
+    <disable_collisions link1="irb120_link_6" link2="left_outer_finger" reason="Never" />
+    <disable_collisions link1="irb120_link_6" link2="left_outer_knuckle" reason="Never" />
+    <disable_collisions link1="irb120_link_6" link2="plate_grasp_point" reason="Adjacent" />
+    <disable_collisions link1="irb120_link_6" link2="right_inner_finger" reason="Never" />
+    <disable_collisions link1="irb120_link_6" link2="right_inner_finger_pad" reason="Never" />
+    <disable_collisions link1="irb120_link_6" link2="right_inner_knuckle" reason="Never" />
+    <disable_collisions link1="irb120_link_6" link2="right_outer_finger" reason="Never" />
+    <disable_collisions link1="irb120_link_6" link2="right_outer_knuckle" reason="Never" />
+    <disable_collisions link1="irb120_link_6" link2="robotiq_arg2f_base_link" reason="Never" />
+    <disable_collisions link1="irb120_link_6" link2="robotiq_gripper_coupling" reason="Adjacent" />
+    <disable_collisions link1="left_inner_finger" link2="left_inner_finger_pad" reason="Adjacent" />
+    <disable_collisions link1="left_inner_finger" link2="left_inner_knuckle" reason="Default" />
+    <disable_collisions link1="left_inner_finger" link2="left_outer_finger" reason="Adjacent" />
+    <disable_collisions link1="left_inner_finger" link2="left_outer_knuckle" reason="Never" />
+    <disable_collisions link1="left_inner_finger" link2="plate_grasp_point" reason="Never" />
+    <disable_collisions link1="left_inner_finger" link2="right_inner_finger" reason="Never" />
+    <disable_collisions link1="left_inner_finger" link2="right_inner_knuckle" reason="Never" />
+    <disable_collisions link1="left_inner_finger" link2="right_outer_finger" reason="Never" />
+    <disable_collisions link1="left_inner_finger" link2="right_outer_knuckle" reason="Never" />
+    <disable_collisions link1="left_inner_finger" link2="robotiq_arg2f_base_link" reason="Never" />
+    <disable_collisions link1="left_inner_finger" link2="robotiq_gripper_coupling" reason="Never" />
+    <disable_collisions link1="left_inner_finger_pad" link2="left_inner_knuckle" reason="Never" />
+    <disable_collisions link1="left_inner_finger_pad" link2="left_outer_finger" reason="Never" />
+    <disable_collisions link1="left_inner_finger_pad" link2="left_outer_knuckle" reason="Never" />
+    <disable_collisions link1="left_inner_finger_pad" link2="plate_grasp_point" reason="Never" />
+    <disable_collisions link1="left_inner_finger_pad" link2="plate_table_link" reason="User" />
+    <disable_collisions link1="left_inner_finger_pad" link2="right_inner_knuckle" reason="Never" />
+    <disable_collisions link1="left_inner_finger_pad" link2="right_outer_finger" reason="Never" />
+    <disable_collisions link1="left_inner_finger_pad" link2="right_outer_knuckle" reason="Never" />
+    <disable_collisions link1="left_inner_finger_pad" link2="robotiq_arg2f_base_link" reason="Never" />
+    <disable_collisions link1="left_inner_finger_pad" link2="robotiq_gripper_coupling" reason="Never" />
+    <disable_collisions link1="left_inner_knuckle" link2="left_outer_finger" reason="Never" />
+    <disable_collisions link1="left_inner_knuckle" link2="left_outer_knuckle" reason="Never" />
+    <disable_collisions link1="left_inner_knuckle" link2="plate_grasp_point" reason="Never" />
+    <disable_collisions link1="left_inner_knuckle" link2="right_inner_finger" reason="Never" />
+    <disable_collisions link1="left_inner_knuckle" link2="right_inner_finger_pad" reason="Never" />
+    <disable_collisions link1="left_inner_knuckle" link2="right_inner_knuckle" reason="Never" />
+    <disable_collisions link1="left_inner_knuckle" link2="right_outer_finger" reason="Never" />
+    <disable_collisions link1="left_inner_knuckle" link2="right_outer_knuckle" reason="Never" />
+    <disable_collisions link1="left_inner_knuckle" link2="robotiq_arg2f_base_link" reason="Adjacent" />
+    <disable_collisions link1="left_inner_knuckle" link2="robotiq_gripper_coupling" reason="Never" />
+    <disable_collisions link1="left_outer_finger" link2="left_outer_knuckle" reason="Adjacent" />
+    <disable_collisions link1="left_outer_finger" link2="plate_grasp_point" reason="Never" />
+    <disable_collisions link1="left_outer_finger" link2="right_inner_finger" reason="Never" />
+    <disable_collisions link1="left_outer_finger" link2="right_inner_finger_pad" reason="Never" />
+    <disable_collisions link1="left_outer_finger" link2="right_inner_knuckle" reason="Never" />
+    <disable_collisions link1="left_outer_finger" link2="right_outer_finger" reason="Never" />
+    <disable_collisions link1="left_outer_finger" link2="right_outer_knuckle" reason="Never" />
+    <disable_collisions link1="left_outer_finger" link2="robotiq_arg2f_base_link" reason="Never" />
+    <disable_collisions link1="left_outer_finger" link2="robotiq_gripper_coupling" reason="Never" />
+    <disable_collisions link1="left_outer_knuckle" link2="plate_grasp_point" reason="Never" />
+    <disable_collisions link1="left_outer_knuckle" link2="right_inner_finger" reason="Never" />
+    <disable_collisions link1="left_outer_knuckle" link2="right_inner_finger_pad" reason="Never" />
+    <disable_collisions link1="left_outer_knuckle" link2="right_inner_knuckle" reason="Never" />
+    <disable_collisions link1="left_outer_knuckle" link2="right_outer_finger" reason="Never" />
+    <disable_collisions link1="left_outer_knuckle" link2="right_outer_knuckle" reason="Never" />
+    <disable_collisions link1="left_outer_knuckle" link2="robotiq_arg2f_base_link" reason="Adjacent" />
+    <disable_collisions link1="left_outer_knuckle" link2="robotiq_gripper_coupling" reason="Never" />
+    <disable_collisions link1="plate_grasp_point" link2="plate_table_link" reason="User" />
+    <disable_collisions link1="plate_grasp_point" link2="right_inner_finger" reason="Never" />
+    <disable_collisions link1="plate_grasp_point" link2="right_inner_finger_pad" reason="Never" />
+    <disable_collisions link1="plate_grasp_point" link2="right_inner_knuckle" reason="Never" />
+    <disable_collisions link1="plate_grasp_point" link2="right_outer_finger" reason="Never" />
+    <disable_collisions link1="plate_grasp_point" link2="right_outer_knuckle" reason="Never" />
+    <disable_collisions link1="plate_grasp_point" link2="robotiq_arg2f_base_link" reason="Never" />
+    <disable_collisions link1="plate_grasp_point" link2="robotiq_gripper_coupling" reason="Adjacent" />
+    <disable_collisions link1="plate_table_link" link2="robot_table_link" reason="Never" />
+    <disable_collisions link1="plate_table_link" link2="table_link" reason="Adjacent" />
+    <disable_collisions link1="right_inner_finger" link2="right_inner_finger_pad" reason="Adjacent" />
+    <disable_collisions link1="right_inner_finger" link2="right_inner_knuckle" reason="Default" />
+    <disable_collisions link1="right_inner_finger" link2="right_outer_finger" reason="Adjacent" />
+    <disable_collisions link1="right_inner_finger" link2="right_outer_knuckle" reason="Never" />
+    <disable_collisions link1="right_inner_finger" link2="robotiq_arg2f_base_link" reason="Never" />
+    <disable_collisions link1="right_inner_finger" link2="robotiq_gripper_coupling" reason="Never" />
+    <disable_collisions link1="right_inner_finger_pad" link2="right_inner_knuckle" reason="Never" />
+    <disable_collisions link1="right_inner_finger_pad" link2="right_outer_finger" reason="Never" />
+    <disable_collisions link1="right_inner_finger_pad" link2="right_outer_knuckle" reason="Never" />
+    <disable_collisions link1="right_inner_finger_pad" link2="robotiq_arg2f_base_link" reason="Never" />
+    <disable_collisions link1="right_inner_finger_pad" link2="robotiq_gripper_coupling" reason="Never" />
+    <disable_collisions link1="right_inner_knuckle" link2="right_outer_finger" reason="Never" />
+    <disable_collisions link1="right_inner_knuckle" link2="right_outer_knuckle" reason="Never" />
+    <disable_collisions link1="right_inner_knuckle" link2="robotiq_arg2f_base_link" reason="Adjacent" />
+    <disable_collisions link1="right_inner_knuckle" link2="robotiq_gripper_coupling" reason="Never" />
+    <disable_collisions link1="right_outer_finger" link2="right_outer_knuckle" reason="Adjacent" />
+    <disable_collisions link1="right_outer_finger" link2="robotiq_arg2f_base_link" reason="Never" />
+    <disable_collisions link1="right_outer_finger" link2="robotiq_gripper_coupling" reason="Never" />
+    <disable_collisions link1="right_outer_knuckle" link2="robotiq_arg2f_base_link" reason="Adjacent" />
+    <disable_collisions link1="right_outer_knuckle" link2="robotiq_gripper_coupling" reason="Never" />
+    <disable_collisions link1="robot_table_link" link2="table_link" reason="Adjacent" />
+    <disable_collisions link1="robotiq_arg2f_base_link" link2="robotiq_gripper_coupling" reason="Adjacent" />
+</robot>

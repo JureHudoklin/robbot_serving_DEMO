@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+<robot name="full_scene" xmlns:xacro="http://ros.org/wiki/xacro">
+  <!-- environments -->
+  <link name="world_base" />
+  <xacro:include filename="$(find demo_table_final)/urdf/demo_table_final.urdf"/>
+  <joint name="world-env_joint" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <parent link="world_base"/>
+    <child link="robot_table_link"/>
+  </joint>
+
+<!-- irb120 -->
+  <xacro:include filename="$(find irb120_description)/urdf/irb120_macro.xacro"/>
+  <xacro:irb120_prefix prefix="irb120_"/>
+  <joint name="world-irb120_joint" type="fixed">
+    <!-- <origin xyz="0.3625 -0.1125 0" rpy="0 0 ${PI}"/> -->
+    <!-- <origin xyz="0.21 0 0" rpy="0 0 0"/> -->
+    <origin xyz="0
+     0 0" rpy="0 0 1.5707963267949"/>
+    <parent link="world_base"/>
+    <child link="irb120_base"/>
+  </joint>
+
+
+  <!-- 2f_gripper -->
+  <xacro:include filename="$(find robotiq_2f_85_gripper_visualization)/urdf/robotiq_arg2f_85_cup_plate_model_macro.xacro" />
+  <xacro:robotiq_arg2f_85 prefix=""/>
+  <link name="robotiq_gripper_coupling">
+    <visual>
+      <origin xyz="0 0 0.004" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://robotiq_2f_85_gripper_visualization/meshes/visual/robotiq_gripper_coupling.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="robotiq_gripper_coupling">
+        <color rgba="0.1 0.1 0.1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0.004" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://robotiq_2f_85_gripper_visualization/meshes/visual/robotiq_gripper_coupling.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="irb120_2f_joint" type="fixed">
+    <parent link="irb120_tool0"/>
+    <child link="robotiq_gripper_coupling"/>
+    <!-- <child link="robotiq_arg2f_base_link"/> -->
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+	</joint>
+  <joint name="2f_gripper_coupling_joint" type="fixed">
+    <parent link="robotiq_gripper_coupling"/>
+    <child link="robotiq_arg2f_base_link"/>
+    <origin xyz="0 0 0.008" rpy="0 0 1.570796"/>
+	</joint>
+
+
+  <link name="cup_grasp_point">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.015 0.015 0.015"/>
+          <!-- <box size="0.1 0.1 0.1"/> -->
+        </geometry>
+        <material name="cup_grasp_point">
+          <color rgba="1 0 1 0.1"/>
+        </material>
+      </visual>
+  </link>
+  <joint name="cup_grasp_point" type="fixed">
+    <parent link="irb120_tool0"/>
+    <child link="cup_grasp_point"/>
+    <!-- <origin xyz="0 0 0.25" rpy="0 0 1.570796"/> -->
+    <origin xyz="0 0 0.2" rpy="0 0 0"/>
+	</joint>
+
+  <link name="plate_grasp_point">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.015 0.015 0.015"/>
+          <!-- <box size="0.1 0.1 0.1"/> -->
+        </geometry>
+        <material name="plate_grasp_point">
+          <color rgba="1 0 1 0.1"/>
+        </material>
+      </visual>
+  </link>
+  <joint name="plate_grasp_point" type="fixed">
+    <parent link="irb120_tool0"/>
+    <child link="plate_grasp_point"/>
+    <!-- <origin xyz="0 0 0.25" rpy="0 0 0.261799"/> -->
+    <origin xyz="0.052 0 0.31" rpy="0 0 0"/>
+	</joint>
+
+
+</robot>
+
+
+  

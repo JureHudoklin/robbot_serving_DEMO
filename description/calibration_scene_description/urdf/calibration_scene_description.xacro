@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<robot name="calibration_scene" xmlns:xacro="http://ros.org/wiki/xacro">
+  <!-- environments -->
+  <link name="world_base" />
+  <xacro:include filename="$(find demo_table_final)/urdf/demo_table_final.urdf"/>
+  <joint name="world-env_joint" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <parent link="world_base"/>
+    <child link="robot_table_link"/>
+  </joint>
+
+<!-- irb120 -->
+  <xacro:include filename="$(find irb120_description)/urdf/irb120_macro.xacro"/>
+  <xacro:irb120_prefix prefix="irb120_"/>
+  <joint name="world-irb120_joint" type="fixed">
+    <!-- <origin xyz="0.3625 -0.1125 0" rpy="0 0 ${PI}"/> -->
+    <!-- <origin xyz="0.21 0 0" rpy="0 0 0"/> -->
+    <origin xyz="0 0 0" rpy="0 0 1.5707963267949"/>
+    <parent link="world_base"/>
+    <child link="irb120_base"/>
+  </joint>
+
+
+ <!-- irb120 calibration tool -->
+  <xacro:include filename="$(find camera_calibration_tool_irb120)/urdf/camera_calibration_tool_irb120_macro.xacro"/>
+  <xacro:calib_tool_prefix prefix="irb120_"/>
+  <joint name="irb120-calib_joint" type="fixed">
+    <parent link="irb120_tool0"/>
+    <child link="irb120_calib_irb120_mount"/>
+    <origin xyz="0 0 0" rpy="-1.570796327 0 1.570796327"/>
+	</joint> 
+
+  <!-- irb120 calibration board center point -->
+  <link name="irb120_calib_center_point">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <sphere radius="0.005"/>
+        </geometry>
+        <material name="irb120_calib_center_point">
+          <color rgba="1 0 1 0.1"/>
+        </material>
+      </visual>
+  </link>
+  <joint name="irb120_calib_center_point_joint" type="fixed">
+    <parent link="irb120_calib_irb120_mount"/>
+    <child link="irb120_calib_center_point"/>
+    <origin xyz="0 -0.13 0" rpy="0 0 0"/>
+	</joint>
+
+</robot>
+
+
+  
